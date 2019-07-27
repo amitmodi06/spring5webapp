@@ -1,20 +1,35 @@
 package com.amit.spring5webapp.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * created by KUAM on 7/27/2019
  */
+
+@Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
 
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books= new HashSet<>();
 
     public Author(){
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
